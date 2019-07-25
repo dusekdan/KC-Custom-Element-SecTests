@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Markdown</title>
+    <!-- libs -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
+    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js"></script>
+
+    <!-- Kentico Custom elements API-->
+    <script src="https://app.kenticocloud.com/js-api/custom-element.js"></script>
+
+    <!-- Custom elements styles -->
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<!-- Custom element Code, basic skelet taken from: https://github.com/Kentico/custom-element-samples/blob/master/Markdown/markdown.html -->
+<div id="results">
+
+</div>
+<script type="text/javascript">
+    let log = console.log;
+    let render = document.getElementById('results');
+
+    CustomElement.init((element, context) => {
+        log(element);
+        
+    });
+
+</script>
+</body>
+</html>
