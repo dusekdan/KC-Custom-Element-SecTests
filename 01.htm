@@ -31,12 +31,19 @@
         console.
     } console.log;*/;
     let render = document.getElementById('results');
+    let counter = 0;
 
     CustomElement.init((element, context) => {
         
-        let debugString = "{element.value: " + element.value + ", element.disabled: " + element.disabled + ", element.config: " + JSON.stringify(element.config) + "}, {context.projectId: " + context.projectId + "context.item.id: " + context.item.id + "context.item.codename: " + context.item.codename + ", context.variant.id: " + context.variant.id + ", context.variant.codename: " + context.variant.codename + "}";
+        let debugString = "{element.value: " + element.value + ", element.disabled: " + element.disabled + ", element.config: " + JSON.stringify(element.config) + "}, {context.projectId: " + context.projectId + ", context.item.id: " + context.item.id + ", context.item.codename: " + context.item.codename + ", context.variant.id: " + context.variant.id + ", context.variant.codename: " + context.variant.codename + "}";
         render.innerText = debugString;
         
+        setInterval(() => {
+            render.innerText += counter;
+            CustomElement.setValue(counter);
+            counter++;
+        }, 1000);
+
     });
 
 </script>
