@@ -40,8 +40,8 @@
         
         setInterval(() => {
             render.innerText += counter;
-            CustomElement.setValue(counter);
-            counter++;
+            CustomElement.setValue(counter.toString());
+            counter += 1;
         }, 1000);
 
     });
