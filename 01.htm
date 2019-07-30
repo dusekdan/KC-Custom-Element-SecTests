@@ -26,42 +26,40 @@
 
 </div>
 <script type="text/javascript">
-    console.nativeLog = console.log;
-    /*console.log = value => {
-        console.
-    } console.log;*/;
     let render = document.getElementById('results');
+    let otherElementsCodeNames = [ "aasset", "date", "nmb", "sluggish", "richtext2", "text1" ];
     let counter = 0;
 
-    let otherElementsCodeNames = [ "aasset", "date", "nmb", "sluggish", "richtext2", "text1" ];
-
-    let debugString = "";
-
     function updateElements(elements) {
-        debugString = "Updated element(s): " + JSON.stringify(elements);
+        let updatedCodename = elements[0];
+        value = CustomElement.getElementValue(updatedCodename, (value) => {
+            let debugString = "Updated element: " + updatedCodename + ", Value: " + JSON.stringify(value);
+            render.innerText = debugString;
+        });
+    }
+
+    function debugInitializationData(element, context) {
+        let debugString = "{element.value: " + element.value + ", element.disabled: " + element.disabled + ", element.config: " + JSON.stringify(element.config) + "}, {context.projectId: " + context.projectId + ", context.item.id: " + context.item.id + ", context.item.codename: " + context.item.codename + ", context.variant.id: " + context.variant.id + ", context.variant.codename: " + context.variant.codename + "}";
         render.innerText = debugString;
-        value = CustomElement.getElementValue(elements[0]);
-        debugString +=  " Value: " + value;
     }
 
     CustomElement.init((element, context) => {
-        //let debugString = "{element.value: " + element.value + ", element.disabled: " + element.disabled + ", element.config: " + JSON.stringify(element.config) + "}, {context.projectId: " + context.projectId + ", context.item.id: " + context.item.id + ", context.item.codename: " + context.item.codename + ", context.variant.id: " + context.variant.id + ", context.variant.codename: " + context.variant.codename + "}";
-        //render.innerText = debugString;
         
+        // debugInitializationData(element, context);
+
+        // Do some updates to the CustomContentElement & subscribe to changes.
         setInterval(() => {
             render.innerText += counter;
             CustomElement.setValue(counter.toString());
             counter += 1;
 
-            // Subscribe to content elements changes
+            // Subscribe to content elements changes.
             CustomElement.observeElementChanges(otherElementsCodeNames, (changedCodeNames) => {
                 updateElements(changedCodeNames);
             });
 
         }, 1000);
-
     });
-
 </script>
 </body>
 </html>
