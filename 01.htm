@@ -40,7 +40,7 @@
     function updateElements(elements) {
         debugString = "Updated element(s): " + JSON.stringify(elements);
         render.innerText = debugString;
-        value = CustomElement.getValue(elements[0]);
+        value = CustomElement.getElementValue(elements[0]);
         debugString +=  " Value: " + value;
     }
 
