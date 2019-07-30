@@ -26,12 +26,17 @@
 
 </div>
 <script type="text/javascript">
-    let log = console.log;
+    console.nativeLog = console.log;
+    /*console.log = value => {
+        console.
+    } console.log;*/;
     let render = document.getElementById('results');
 
     CustomElement.init((element, context) => {
-        log(element);
-        // Update to force publish
+        
+        let debugString = "{element.value: " + element.value + ", element.disabled: " + element.disabled + ", element.config: " + JSON.stringify(element.config) + "}";
+        render.innerText = debugString;
+        
     });
 
 </script>
